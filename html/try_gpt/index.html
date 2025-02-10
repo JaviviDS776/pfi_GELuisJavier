@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voleibol y sus Reglas</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        h1,
+        h2 {
+            color: #007bff;
+        }
+
+        p,
+        li {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        /* Button Styles */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            background-color: #f4f4f4;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background-color: #b9b9b9;
+        }
+
+        /* Mode Styles */
+        .light-mode {
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        .dark-mode {
+            background: #1e1e1e;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .container {
+            background: #252525;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .high-contrast {
+            background: yellow;
+            color: black;
+            font-weight: bold;
+        }
+
+        .high-contrast .container {
+            background: #ffff00;
+            color: black;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body class="light-mode">
+    <div class="container">
+        <h1 id="title">Voleibol y sus Reglas</h1>
+        <p id="content">El voleibol es un deporte de equipo en el que dos equipos de seis jugadores se enfrentan en una
+            cancha dividida por una red. El objetivo es pasar el balón por encima de la red y hacerlo tocar el suelo en
+            el campo contrario.</p>
+        <h2 id="rules">Reglas Básicas:</h2>
+        <ul>
+            <li id="rule1">Cada equipo tiene un máximo de tres toques antes de devolver el balón.</li>
+            <li id="rule2">No se puede retener ni acompañar el balón.</li>
+            <li id="rule3">Un jugador no puede tocar el balón dos veces seguidas, salvo en el bloqueo.</li>
+            <li id="rule4">El juego se gana al obtener 25 puntos con una ventaja mínima de 2 puntos.</li>
+        </ul>
+        <div class="button-container">
+            <button onclick="toggleMode()">Cambiar Modo</button>
+            <button onclick="translateContent()">Traducir</button>
+        </div>
+    </div>
+    <script>
+        let modes = ["light-mode", "dark-mode", "high-contrast"];
+        let currentModeIndex = 0;
+        let languages = ["es", "en", "de", "fr", "pt"];
+        let translations = {
+            es: {
+                title: "Voleibol y sus Reglas",
+                content: "El voleibol es un deporte de equipo en el que dos equipos de seis jugadores se enfrentan en una cancha dividida por una red. El objetivo es pasar el balón por encima de la red y hacerlo tocar el suelo en el campo contrario.",
+                rules: "Reglas Básicas:",
+                rule1: "Cada equipo tiene un máximo de tres toques antes de devolver el balón.",
+                rule2: "No se puede retener ni acompañar el balón.",
+                rule3: "Un jugador no puede tocar el balón dos veces seguidas, salvo en el bloqueo.",
+                rule4: "El juego se gana al obtener 25 puntos con una ventaja mínima de 2 puntos."
+            },
+            en: {
+                title: "Volleyball and its Rules",
+                content: "Volleyball is a team sport where two teams of six players face off on a court divided by a net. The goal is to pass the ball over the net and make it touch the ground in the opposing field.",
+                rules: "Basic Rules:",
+                rule1: "Each team has a maximum of three touches before returning the ball.",
+                rule2: "The ball cannot be held or carried.",
+                rule3: "A player cannot hit the ball twice in a row, except during blocking.",
+                rule4: "The game is won by reaching 25 points with a minimum lead of 2 points."
+            },
+            de: {
+                title: "Volleyball und seine Regeln",
+                content: "Volleyball ist ein Mannschaftssport, bei dem zwei Teams mit jeweils sechs Spielern auf einem durch ein Netz geteilten Spielfeld gegeneinander antreten.",
+                rules: "Grundregeln:",
+                rule1: "Jedes Team darf den Ball maximal dreimal berühren, bevor er zurückgespielt wird.",
+                rule2: "Der Ball darf nicht gehalten oder getragen werden.",
+                rule3: "Ein Spieler darf den Ball nicht zweimal hintereinander berühren, außer beim Blocken.",
+                rule4: "Das Spiel gewinnt das Team, das zuerst 25 Punkte mit mindestens 2 Punkten Vorsprung erreicht."
+            },
+            fr: {
+                title: "Le volley-ball et ses règles",
+                content: "Le volley-ball est un sport d'équipe où deux équipes de six joueurs s'affrontent sur un terrain divisé par un filet.",
+                rules: "Règles de base:",
+                rule1: "Chaque équipe a un maximum de trois touches avant de renvoyer le ballon.",
+                rule2: "Le ballon ne peut pas être retenu ou accompagné.",
+                rule3: "Un joueur ne peut pas toucher le ballon deux fois de suite, sauf en bloquant.",
+                rule4: "Le jeu est gagné en atteignant 25 points avec un avantage de 2 points minimum."
+            },
+            pt: {
+                title: "Voleibol e suas Regras",
+                content: "O voleibol é um esporte de equipe onde duas equipes de seis jogadores se enfrentam em uma quadra dividida por uma rede.",
+                rules: "Regras Básicas:",
+                rule1: "Cada equipe pode tocar a bola no máximo três vezes antes de devolvê-la.",
+                rule2: "A bola não pode ser segurada ou carregada.",
+                rule3: "Um jogador não pode tocar na bola duas vezes seguidas, exceto no bloqueio.",
+                rule4: "O jogo é ganho ao alcançar 25 pontos com uma vantagem mínima de 2 pontos."
+            }
+        };
+        let currentLanguageIndex = 0;
+
+        function toggleMode() {
+            document.body.classList.remove(modes[currentModeIndex]);
+            currentModeIndex = (currentModeIndex + 1) % modes.length;
+            document.body.classList.add(modes[currentModeIndex]);
+        }
+
+        function translateContent() {
+            currentLanguageIndex = (currentLanguageIndex + 1) % languages.length;
+            let lang = languages[currentLanguageIndex];
+            let text = translations[lang];
+            document.getElementById("title").textContent = text.title;
+            document.getElementById("content").textContent = text.content;
+            document.getElementById("rules").textContent = text.rules;
+            document.getElementById("rule1").textContent = text.rule1;
+            document.getElementById("rule2").textContent = text.rule2;
+            document.getElementById("rule3").textContent = text.rule3;
+            document.getElementById("rule4").textContent = text.rule4;
+        }
+    </script>
+</body>
+
+</html>
