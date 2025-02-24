@@ -102,7 +102,7 @@ nav ul li a {
   border-radius: 20px;
   padding: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 0 10px #ffffff4f;
+  box-shadow: 0 0 10px #0000004f;
 }
 
 .blog-post:hover {
@@ -130,7 +130,12 @@ aside {
   position: sticky;
   top: 20px;
   margin-bottom: 20px;
-  box-shadow: 1px 10px 20px black;
+  box-shadow: 0 0 10px #0000004f;
+}
+
+aside:hover {
+  transition: 0.3s;
+  background-color: var(--color1-hover);
 }
 
 aside h2 {
@@ -154,7 +159,18 @@ footer {
   padding: 1px 1px;
   width: 100%;
   border-radius: 10px 10px 0px 0px;
-  box-shadow: 1px 10px 20px black;
+  box-shadow: inset 0px -5px 20px rgb(62, 62, 62);
+  transition: 0.3s;
+}
+
+footer:hover {
+  box-shadow: inset 0px -5px 20px rgb(81, 81, 81);
+  transition: 0.3s;
+}
+
+.footer {
+  text-align: center;
+  font-weight: 600;
 }
 
 @media (max-width: 950px) {
